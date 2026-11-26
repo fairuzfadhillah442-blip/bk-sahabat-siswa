@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BK Sahabat Siswa | Teman Cerita</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#beranda"><span class="brand-icon">♡</span> BK Sahabat Siswa</a>
+    <nav><a href="#beranda">Beranda</a><a href="#layanan">Layanan</a><a href="#pengajuan">Jadwalkan Konseling</a></nav>
+  </header>
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-content">
+        <span class="eyebrow">RUANG AMAN UNTUK SISWA</span>
+        <h1>Teman Cerita,<br /><span>Tempat Bertumbuh.</span></h1>
+        <p>Setiap cerita berarti. Kamu tidak harus menghadapi semuanya sendirian. Guru BK siap menemani kamu menemukan jalan.</p>
+        <a class="button primary" href="#pengajuan">Ajukan Konseling <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-label="Ilustrasi ruang nyaman">
+        <div class="sun"></div><div class="plant">✿</div><div class="bubble">Kamu boleh<br/>bercerita.</div>
+        <div class="chair"><div class="chair-back"></div><div class="chair-seat"></div><div class="chair-leg left"></div><div class="chair-leg right"></div></div>
+      </div>
+    </section>
+    <section class="section" id="layanan">
+      <div class="section-heading"><span class="eyebrow">KENALI LAYANAN KAMI</span><h2>Berbagai hal bisa<br/>kamu ceritakan.</h2><p>BK bukan hanya tentang masalah. Kami juga mendukung perkembangan diri dan masa depanmu.</p></div>
+      <div class="service-grid">
+        <article class="service-card"><div class="service-icon">☁</div><h3>Konseling Pribadi</h3><p>Ruang untuk membicarakan perasaan, kesulitan, dan hal-hal yang sedang kamu hadapi.</p></article>
+        <article class="service-card"><div class="service-icon">✧</div><h3>Pengembangan Diri</h3><p>Mengenali potensi, membangun kepercayaan diri, dan mengembangkan keterampilan.</p></article>
+        <article class="service-card"><div class="service-icon">⌁</div><h3>Akademik & Karier</h3><p>Temukan strategi belajar, pilihan pendidikan, dan rencana karier yang sesuai.</p></article>
+      </div>
+    </section>
+    <section class="appointment" id="pengajuan">
+      <div class="form-intro"><span class="eyebrow">MULAI DARI SATU LANGKAH</span><h2>Ajukan jadwal<br/>konseling.</h2><p>Isi formulir berikut. Guru BK akan meninjau pengajuanmu dan menghubungi kamu untuk konfirmasi jadwal.</p><div class="privacy-note">🔒 Informasi yang kamu berikan perlu ditangani secara rahasia oleh petugas BK dan hanya digunakan untuk keperluan layanan.</div></div>
+      <form id="appointmentForm">
+        <label>Nama lengkap<input name="nama" required maxlength="100" placeholder="Nama kamu" /></label>
+        <div class="two-col"><label>Kelas<input name="kelas" required placeholder="Contoh: XI-2" /></label><label>Email aktif<input name="email" type="email" required placeholder="email@contoh.com" /></label></div>
+        <label>Topik konsultasi<select name="topik" required><option value="" disabled selected>Pilih topik</option><option>Pribadi / Emosi</option><option>Pertemanan</option><option>Keluarga</option><option>Akademik / Belajar</option><option>Karier / Masa depan</option><option>Lainnya</option></select></label>
+        <div class="two-col"><label>Tanggal yang diinginkan<input name="tanggal" type="date" required /></label><label>Waktu yang diinginkan<select name="waktu" required><option value="" disabled selected>Pilih waktu</option><option>Pagi</option><option>Siang</option><option>Sore</option></select></label></div>
+        <label>Hal yang ingin disampaikan (opsional)<textarea name="catatan" rows="4" maxlength="1000" placeholder="Tuliskan secara singkat jika kamu nyaman..."></textarea></label>
+        <label class="consent"><input type="checkbox" name="persetujuan" required /> Saya memahami bahwa ini merupakan pengajuan jadwal dan jadwal akan dikonfirmasi oleh Guru BK.</label>
+        <button class="button primary submit" type="submit">Kirim Pengajuan <span>↗</span></button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+    <section class="closing"><h2>Meminta bantuan adalah<br/>sebuah keberanian.</h2><p>Terima kasih sudah mengambil langkah untuk dirimu sendiri.</p></section>
+  </main>
+  <footer><span>© <span id="year"></span> BK Sahabat Siswa</span><span>Teman Cerita · Ruang untuk bertumbuh</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
