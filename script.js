@@ -14,6 +14,13 @@ form.addEventListener('submit', async (event) => {
     return;
   }
   const data = Object.fromEntries(new FormData(form).entries());
+  // Membuat kode pengajuan unik
+const kodePengajuan = "BK-" + crypto.randomUUID();
+
+// Menambahkan kode ke data yang dikirim
+data.kode = kodePengajuan;
+console.log("DATA YANG DIKIRIM:", data);
+console.log("KODE PENGAJUAN:", data.kode);
   const button = form.querySelector('button[type="submit"]');
   button.disabled = true; button.textContent = 'Mengirim...'; statusEl.textContent = '';
   try {
@@ -26,3 +33,62 @@ form.addEventListener('submit', async (event) => {
     statusEl.textContent = 'Pengiriman gagal. Periksa koneksi internet dan coba lagi.';
   } finally { button.disabled = false; button.innerHTML = 'Kirim Pengajuan <span>↗</span>'; }
 });
+// ===== CEK STATUS PENGAJUAN =====
+
+const STATUS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyRtu0n-FtMNUD3C-IXUvfwjEgPIBDKPAqdxJ7zyC09nKzQFVXZXlz2QJxPUcApRtNYxA/exec";
+
+const statusForm = document.getElementById("statusForm");
+const statusResult = document.getElementById("statusResult");
+
+statusForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const kode = document.getElementById("statusCode").value.trim();
+  statusResult.innerHTML = "<p>Memeriksa pengajuan...</p>";
+
+  const callbackName = "statusCallback_" + Date.now();
+
+  const script = document.createElement("script");
+  const url = new URL(STATUS_SCRIPT_URL);
+
+  url.searchParams.set("code", kode);
+  url.searchParams.set("callback", callbackName);
+
+  window[callbackName] = function (data) {
+  if (!data.success) {
+    statusResult.innerHTML = `<p>${escapeStatusHTML(data.message || "Pengajuan tidak ditemukan.")}</p>`;
+  } else {
+    const hasil = data.data;
+
+    statusResult.innerHTML = `
+      <div style="background:white; padding:20px; border-radius:12px; border:1px solid #ddd;">
+        <h3>Hasil Pengajuan</h3>
+        <p><strong>Nama:</strong> ${escapeStatusHTML(hasil.name || "-")}</p>
+        <p><strong>Status:</strong> ${escapeStatusHTML(hasil.status || "Belum ada status")}</p>
+        <p><strong>Jadwal Konseling:</strong> ${escapeStatusHTML(hasil.schedule || "Belum ditentukan")}</p>
+      </div>
+    `;
+  }
+
+  delete window[callbackName];
+  script.remove();
+};
+
+  script.onerror = function () {
+    statusResult.innerHTML = "<p>Gagal menghubungkan ke server. Coba lagi nanti.</p>";
+    delete window[callbackName];
+    script.remove();
+  };
+
+  script.src = url.toString();
+  document.body.appendChild(script);
+});
+
+function escapeStatusHTML(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}

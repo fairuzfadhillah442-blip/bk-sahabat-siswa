@@ -36,7 +36,7 @@
       <div class="form-intro"><span class="eyebrow">MULAI DARI SATU LANGKAH</span><h2>Ajukan jadwal<br/>konseling.</h2><p>Isi formulir berikut. Guru BK akan meninjau pengajuanmu dan menghubungi kamu untuk konfirmasi jadwal.</p><div class="privacy-note">🔒 Informasi yang kamu berikan perlu ditangani secara rahasia oleh petugas BK dan hanya digunakan untuk keperluan layanan.</div></div>
       <form id="appointmentForm">
         <label>Nama lengkap<input name="nama" required maxlength="100" placeholder="Nama kamu" /></label>
-        <div class="two-col"><label>Kelas<input name="kelas" required placeholder="Contoh: XI-2" /></label><label>Email aktif<input name="email" type="email" required placeholder="email@contoh.com" /></label></div>
+        <div class="two-col"><label>Kelas<input name="kelas" required placeholder="Contoh: XI-2" /></label><label>Nomor WhatsApp aktif<input name="email" type="nomor" required placeholder="Contoh: 0895-1234-5678" /></label></div>
         <label>Topik konsultasi<select name="topik" required><option value="" disabled selected>Pilih topik</option><option>Pribadi / Emosi</option><option>Pertemanan</option><option>Keluarga</option><option>Akademik / Belajar</option><option>Karier / Masa depan</option><option>Lainnya</option></select></label>
         <div class="two-col"><label>Tanggal yang diinginkan<input name="tanggal" type="date" required /></label><label>Waktu yang diinginkan<select name="waktu" required><option value="" disabled selected>Pilih waktu</option><option>Pagi</option><option>Siang</option><option>Sore</option></select></label></div>
         <label>Hal yang ingin disampaikan (opsional)<textarea name="catatan" rows="4" maxlength="1000" placeholder="Tuliskan secara singkat jika kamu nyaman..."></textarea></label>
@@ -45,6 +45,32 @@
         <p class="form-status" id="formStatus" role="status"></p>
       </form>
     </section>
+    
+<!-- CEK STATUS PENGAJUAN -->
+<section class="status-section" id="cek-status">
+  <div class="status-container">
+    <h2>Cek Status Pengajuan</h2>
+    <p>
+      Sudah mengajukan konseling? Masukkan kode pengajuanmu
+      untuk melihat perkembangan permohonanmu.
+    </p>
+
+    <form id="statusForm">
+      <input
+        type="text"
+        id="statusCode"
+        placeholder="Masukkan kode pengajuan"
+        required
+      />
+
+      <button type="submit">Cek Status</button>
+    </form>
+
+    <div id="statusResult" aria-live="polite"></div>
+  </div>
+</section>
+<!-- AKHIR CEK STATUS -->
+
     <section class="closing"><h2>Meminta bantuan adalah<br/>sebuah keberanian.</h2><p>Terima kasih sudah mengambil langkah untuk dirimu sendiri.</p></section>
   </main>
   <footer><span>© <span id="year"></span> BK Sahabat Siswa</span><span>Teman Cerita · Ruang untuk bertumbuh</span></footer>
